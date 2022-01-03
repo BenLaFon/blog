@@ -1,0 +1,60 @@
+<div class="columns-1 ">
+  <div class="flex justify-center  w-screen items-start min-h-screen bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
+    <div class=" bg-gray-900 border-4 border-blue-900 items-start rounded-3xl w-11/12 max-h-4/6 md:w-9/12 md:max-h-5/6 overflow-y-auto">
+      <section class="container mx-auto p-6 font-mono max-h-5/6 overflow-y-auto">
+        <div class="w-full mb-8 overflow-y-auto rounded-lg shadow-lg">
+          <div class="w-full overflow-x-auto max-h-128">
+            <table class="w-full max-h-5/6 overflow-y-auto">
+              <div class="flex justify-between items-center py-4">
+                <h3 class="text-xl text-white"> <%= @posts.count %> Posts</h3>
+                <div>
+                  <% if policy(Comment).create? %>
+                    <%= link_to "New Post", new_post_path, class:"bg-yellow-500 rounded-lg w-auto px-2 py-3 text-center" %>
+                  <% end %>
+                </div>
+              </div>
+              <thead>
+                <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                  <th class="px-4 py-3">Title</th>
+                  <th class="px-4 py-3">Author</th>
+                  <th class="px-4 py-3">Publish Date</th>
+                  <th class="px-4 py-3">Comments</th>
+                  <th class="px-4 py-3">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white">
+              <% @posts.each do |post| %>
+                <tr class="text-gray-700">
+                  <td class="px-4 py-3 border">
+                    <div class="flex items-center text-sm">
+                      <div>
+                        <p class="font-semibold text-black"><%= post.title %></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-ms font-semibold border"><%= post.user.username %></td>
+                  <td class="px-4 py-3 text-xs border">
+                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> <%= post.created_at %></span>
+                  </td>
+                  <td class="px-4 py-3 text-xs border">
+                    <span class="font-semibold text-black">  <%= post.comments.count %></span>
+                  </td>
+                  <td class="px-4 py-3 text-sm border">
+                    <% if policy(post).edit? %>
+                      <%= link_to "Edit", edit_post_path(post) %>
+                    <%end %>
+                    <% if policy(post).destroy? %>
+                      <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: 'Are you sure?'} %>
+                    <%end %>
+                    <%= link_to "Show", post_path(post) %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
