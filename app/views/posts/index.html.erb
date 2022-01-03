@@ -4,7 +4,7 @@
       <section class="container mx-auto p-6 font-mono max-h-5/6 overflow-y-auto">
         <div class="w-full mb-8 overflow-y-auto rounded-lg shadow-lg">
           <div class="w-full overflow-x-auto max-h-128">
-            <table class="w-full max-h-5/6 overflow-y-auto">
+            <table class="w-full max-h-5/6 overflow-y-auto overflow-x-auto table-auto">
               <div class="flex justify-between items-center py-4">
                 <h3 class="text-xl text-white"> <%= @posts.count %> Posts</h3>
                 <div>
@@ -39,14 +39,16 @@
                   <td class="px-4 py-3 text-xs border">
                     <span class="font-semibold text-black">  <%= post.comments.count %></span>
                   </td>
-                  <td class="px-4 py-3 text-sm border">
-                    <% if policy(post).edit? %>
-                      <%= link_to "Edit", edit_post_path(post) %>
-                    <%end %>
-                    <% if policy(post).destroy? %>
-                      <%= button_to 'Delete', post, method: :delete %>
-                    <%end %>
-                    <%= link_to "Show", post_path(post) %>
+                  <td class="px-4 py-3 text-sm border ">
+                    <div class="h-full flex flex-wrap">
+                      <% if policy(post).edit? %>
+                        <%= link_to "Edit", edit_post_path(post) %>
+                      <%end %>
+                      <% if policy(post).destroy? %>
+                        <%= button_to 'Delete', post, method: :delete %>
+                      <%end %>
+                      <%= link_to "Show", post_path(post) %>
+                    </div>
                   </td>
                 </tr>
                 <% end %>
