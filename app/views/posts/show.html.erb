@@ -20,12 +20,12 @@
       <% @post.comments.each do |comment| %>
         <div class="flex justify-between">
           <div>
-            <li class="list-group-item text-left py-4 "><%= comment.content %>
+            <li class="list-group-item text-left py-4 "><%= comment.content %> <%= comment.id %>
           </li>
           </div>
           <div>
             <% if policy(comment).destroy? %>
-              <%= link_to "Delete",comment_path(comment), method: :delete, data: { confirm: "Are you sure?" }, class: "bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600 justify-self-end" %>
+            <%= button_to 'remove', comment, method: :delete, class: "bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600 justify-self-end" %>
             <% end %>
           </div>
         </div>
