@@ -14,6 +14,11 @@
       </div>
 
       <div class="field">
+        <%= f.label :username, class: "text-white" %><br />
+        <%= f.text_field :username, autofocus: true, autocomplete: "username", class:"w-full" %>
+      </div>
+
+      <div class="field">
         <%= f.label :password, class: "text-white" %>
         <% if @minimum_password_length %>
         <em class="text-white">(<%= @minimum_password_length %> characters minimum)</em>

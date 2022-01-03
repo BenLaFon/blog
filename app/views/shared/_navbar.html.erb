@@ -1,0 +1,25 @@
+<nav class="flex justify-between px-60 py-10 items-center bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
+  <%= link_to "Really Good Blog", root_path, class: "text-xl text-gray-800 font-bold" %>
+
+  <div class="flex items-center">
+    <div class="flex items-center">
+      <%= form_tag posts_path, method: :get do %>
+                      <%= text_field_tag :query,
+                      params[:query],
+                      class: "form-control rounded-lg px-4  ml-2 outline-none bg-transparent font- ",
+                      placeholder: "Find a post"
+                      %>
+
+                    <% end %>
+    </div>
+    <ul class="flex items-center space-x-6">
+      <li class="font-semibold text-gray-700">
+        <% if user_signed_in? %>
+          <%= link_to "Log Out", destroy_user_session_path, :method=>'delete', class: "bg-indigo-800 text-white rounded-lg w-auto px-2 py-2 text-center"%>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "bg-indigo-800 text-white rounded-lg w-auto mx-6 px-2 py-2 text-center" %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
